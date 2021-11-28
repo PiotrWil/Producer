@@ -27,11 +27,32 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-test</artifactId>-->
+<!--			</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			</dependency>
+			<version>2.3.1.RELEASE</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.jupiter</groupId>
+					<artifactId>junit-jupiter</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.mockito</groupId>
+					<artifactId>mockito-junit-jupiter</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	<dependency>
+		
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
 		<version>2.1.1.RELEASE</version>
@@ -40,7 +61,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
@@ -89,24 +109,25 @@
 				<extensions>true</extensions>
 				<configuration>
 					<baseClassForTests>com.example.carrental.BaseClass</baseClassForTests>
+<!--					<contractsRepositoryUrl>git://https://github.com/PiotrWil/Producer.git</contractsRepositoryUrl>-->
+<!--					<contractsMode>REMOTE</contractsMode>-->
 				</configuration>
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<phase>package</phase>-->
-<!--						<goals>-->
-<!--							&lt;!&ndash; By default we will not push the stubs back to SCM,-->
-<!--							you have to explicitly add it as a goal &ndash;&gt;-->
-<!--							<goal>pushStubsToScm</goal>-->
-<!--						</goals>-->
-<!--					</execution>-->
-<!--				</executions>-->
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<!-- By default we will not push the stubs back to SCM,
+							you have to explicitly add it as a goal -->
+							<goal>pushStubsToScm</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-			
-<!--			<plugin>-->
-<!--			<groupId>org.apache.maven.plugins</groupId>-->
-<!--			<artifactId>maven-surefire-plugin</artifactId>-->
-<!--			<version>3.0.0-M5</version>-->
-<!--			</plugin>-->
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>3.0.0-M3</version>
+			</plugin>
 		</plugins>
 		
 	</build>
